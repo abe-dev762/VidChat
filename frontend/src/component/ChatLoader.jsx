@@ -8,3 +8,5 @@ function ChatLoader() {
     </div>
   )
 };
+
+export default ChatLoader;
