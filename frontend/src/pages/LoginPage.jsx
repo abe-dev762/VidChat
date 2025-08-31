@@ -25,7 +25,7 @@ const LoginPage = () => {
     >
       <div className="border border-primary/25 flex flex-col lg:flex-row w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden">
         <div className="w-full lg:w-1/2 p-4 sm:p-8 flex flex-col">
-          {/* LOGO */}
+          
           <div className="mb-4 flex items-center justify-start gap-2">
             <Rabbit className='size-9 text-primary'/>
             <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">
@@ -33,7 +33,6 @@ const LoginPage = () => {
             </span>
           </div>
 
-          {/* ERROR MESSAGE DISPLAY */}
           {error && (
             <div className="alert alert-error mb-4">
               <span>{error.response.data.message}</span>

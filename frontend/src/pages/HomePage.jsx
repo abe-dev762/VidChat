@@ -12,6 +12,7 @@ import { CheckCircleIcon, MapPinIcon, UserPlusIcon, UsersIcon } from "lucide-rea
 import { capitialize } from "../lib/utils";
 import FriendCard, { getLanguageFlag } from "../component/FriendCard.jsx";
 import NoFriendsFound from "../component/NoFriendsFound.jsx";
+import PageWrapper from "../component/PageWrapper.jsx";
 
 
 const HomePage = () => {
@@ -49,6 +50,7 @@ const HomePage = () => {
   }, [outgoingFriendReqs]);
 
   return (
+   <PageWrapper>
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="container mx-auto space-y-10">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -122,8 +124,7 @@ const HomePage = () => {
                           )}
                         </div>
                       </div>
-
-                      {/* Languages with flags */}
+    
                       <div className="flex flex-wrap gap-1.5">
                         <span className="badge badge-secondary">
                           {getLanguageFlag(user.nativeLanguage)}
@@ -166,6 +167,7 @@ const HomePage = () => {
         </section>
       </div>
     </div>
+   </PageWrapper>
   )
 };
 

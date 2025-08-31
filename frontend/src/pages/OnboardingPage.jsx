@@ -8,19 +8,8 @@ import { LoaderIcon, Rabbit, MapPinIcon, ShuffleIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { motion } from 'motion/react';
 import PageWrapper from '../component/PageWrapper';
+import { staggerContainer, fadeInUp } from '../utility/utils';
 
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-};
 
 
 const OnboardingPage = () => {
