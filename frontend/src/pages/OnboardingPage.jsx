@@ -4,8 +4,23 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAuthUser from '../hooks/useAuthUser';
 import { completeOnboarding } from '../lib/api';
 import { LANGUAGES } from '../constants';
-import { LoaderIcon, ShipWheelIcon, MapPinIcon, ShuffleIcon } from 'lucide-react';
+import { LoaderIcon, Rabbit, MapPinIcon, ShuffleIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { motion } from 'motion/react';
+import PageWrapper from '../component/PageWrapper';
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+};
 
 
 const OnboardingPage = () => {
@@ -48,16 +63,36 @@ const OnboardingPage = () => {
   };
 
   return (
-     <div className="min-h-screen bg-base-100 flex items-center justify-center p-4">
-      <div className="card bg-base-200 w-full max-w-3xl shadow-xl">
+    <PageWrapper>
+     <motion.div 
+     className="min-h-screen bg-base-100 flex items-center justify-center p-4"
+     variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+     >
+      <motion.div 
+      className="card bg-base-200 w-full max-w-3xl shadow-xl"
+      variants={fadeInUp}
+      >
         <div className="card-body p-6 sm:p-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6">Complete Your Profile</h1>
+          <motion.h1 
+          className="text-2xl sm:text-3xl font-bold text-center mb-6"
+           variants={fadeInUp}
+          >Complete Your Profile</motion.h1>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* PROFILE PIC CONTAINER */}
+          <motion.form 
+          onSubmit={handleSubmit} 
+          className="space-y-6"
+           variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+          >
+            
             <div className="flex flex-col items-center justify-center space-y-4">
-              {/* IMAGE PREVIEW */}
-              <div className="size-32 rounded-full bg-base-300 overflow-hidden">
+              <motion.div 
+              className="size-32 rounded-full bg-base-300 overflow-hidden"
+              variants={fadeInUp}
+              >
                 {formState.profilePic ? (
                   <img
                     src={formState.profilePic}
@@ -69,9 +104,8 @@ const OnboardingPage = () => {
                     <CameraIcon className="size-12 text-base-content opacity-40" />
                   </div>
                 )}
-              </div>
+              </motion.div>
 
-              {/* Generate Random Avatar BTN */}
               <div className="flex items-center gap-2">
                 <button type="button" onClick={handleRandomAvatar} className="btn btn-accent">
                   <ShuffleIcon className="size-4 mr-2" />
@@ -80,8 +114,10 @@ const OnboardingPage = () => {
               </div>
             </div>
 
-            {/* FULL NAME */}
-            <div className="form-control">
+            <motion.div 
+            className="form-control"
+            variants={fadeInUp}
+            >
               <label className="label">
                 <span className="label-text">Full Name</span>
               </label>
@@ -93,10 +129,12 @@ const OnboardingPage = () => {
                 className="input input-bordered w-full"
                 placeholder="Your full name"
               />
-            </div>
+            </motion.div>
 
-            {/* BIO */}
-            <div className="form-control">
+            <motion.div 
+            className="form-control"
+            variants={fadeInUp}
+            >
               <label className="label">
                 <span className="label-text">Bio</span>
               </label>
@@ -107,12 +145,17 @@ const OnboardingPage = () => {
                 className="textarea textarea-bordered h-24"
                 placeholder="Tell others about yourself and your language learning goals"
               />
-            </div>
+            </motion.div>
 
-            {/* LANGUAGES */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* NATIVE LANGUAGE */}
-              <div className="form-control">
+            <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            variants={fadeInUp}
+            >
+              
+              <motion.div 
+              className="form-control"
+              variants={fadeInUp}
+              >
                 <label className="label">
                   <span className="label-text">Native Language</span>
                 </label>
@@ -129,10 +172,13 @@ const OnboardingPage = () => {
                     </option>
                   ))}
                 </select>
-              </div>
+              </motion.div>
 
-              {/* LEARNING LANGUAGE */}
-              <div className="form-control">
+              
+              <motion.div 
+              className="form-control"
+              variants={fadeInUp}
+              >
                 <label className="label">
                   <span className="label-text">Learning Language</span>
                 </label>
@@ -149,11 +195,14 @@ const OnboardingPage = () => {
                     </option>
                   ))}
                 </select>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            {/* LOCATION */}
-            <div className="form-control">
+            
+            <motion.div 
+            className="form-control"
+            variants={fadeInUp}
+            >
               <label className="label">
                 <span className="label-text">Location</span>
               </label>
@@ -168,14 +217,17 @@ const OnboardingPage = () => {
                   placeholder="City, Country"
                 />
               </div>
-            </div>
+            </motion.div>
 
-            {/* SUBMIT BUTTON */}
 
-            <button className="btn btn-primary w-full" disabled={isPending} type="submit">
+            <motion.button 
+            className="btn btn-primary w-full" disabled={isPending} type="submit"
+             whileHover={{ scale: 1.05 }}
+             whileTap={{ scale: 0.95 }}
+            >
               {!isPending ? (
                 <>
-                  <ShipWheelIcon className="size-5 mr-2" />
+                  <Rabbit className="size-5 mr-2" />
                   Complete Onboarding
                 </>
               ) : (
@@ -184,11 +236,12 @@ const OnboardingPage = () => {
                   Onboarding...
                 </>
               )}
-            </button>
-          </form>
+            </motion.button>
+          </motion.form>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
+ </PageWrapper>
   )
 };
 

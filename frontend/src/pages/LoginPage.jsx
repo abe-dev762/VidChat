@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
-import { ShipWheelIcon } from 'lucide-react';
+import { Rabbit } from 'lucide-react';
 import useLogin from '../hooks/useLogin';
 import { Link } from 'react-router';
-
+import { motion } from 'motion/react';
 
 const LoginPage = () => {
   const [loginData, setLoginData] = useState({
@@ -21,16 +21,15 @@ const LoginPage = () => {
   return (
     <div
       className="h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
-      data-theme="forest"
+      data-theme="synthwave"
     >
       <div className="border border-primary/25 flex flex-col lg:flex-row w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden">
-        {/* LOGIN FORM SECTION */}
         <div className="w-full lg:w-1/2 p-4 sm:p-8 flex flex-col">
           {/* LOGO */}
           <div className="mb-4 flex items-center justify-start gap-2">
-            <ShipWheelIcon className="size-9 text-primary" />
+            <Rabbit className='size-9 text-primary'/>
             <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">
-              Streamify
+              VidChat
             </span>
           </div>
 
@@ -80,7 +79,13 @@ const LoginPage = () => {
                     />
                   </div>
 
-                  <button type="submit" className="btn btn-primary w-full" disabled={isPending}>
+                  <motion.button 
+                  type="submit" 
+                  className="btn btn-primary w-full" 
+                  disabled={isPending}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  >
                     {isPending ? (
                       <>
                         <span className="loading loading-spinner loading-xs"></span>
@@ -89,7 +94,7 @@ const LoginPage = () => {
                     ) : (
                       "Sign In"
                     )}
-                  </button>
+                  </motion.button>
 
                   <div className="text-center mt-4">
                     <p className="text-sm">
@@ -105,12 +110,17 @@ const LoginPage = () => {
           </div>
         </div>
 
-        {/* IMAGE SECTION */}
         <div className="hidden lg:flex w-full lg:w-1/2 bg-primary/10 items-center justify-center">
           <div className="max-w-md p-8">
-            {/* Illustration */}
             <div className="relative aspect-square max-w-sm mx-auto">
-              <img src="/i.png" alt="Language connection illustration" className="w-full h-full" />
+              <motion.img 
+              src="/i.png" 
+              alt="Language connection illustration" 
+              className="w-full h-full" 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              />
             </div>
 
             <div className="text-center space-y-3 mt-6">

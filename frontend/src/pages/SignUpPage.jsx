@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router';
 import useSignUp from '../hooks/useSignUp';
+import { Rabbit } from 'lucide-react'
+import { motion } from 'motion/react';
 
 
 const SignUpPage = () => {
@@ -21,20 +23,16 @@ const SignUpPage = () => {
   return (
     <div
       className="h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
-      data-theme="forest"
+      data-theme="synthwave"
     >
       <div className="border border-primary/25 flex flex-col lg:flex-row w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden">
-        {/* SIGNUP FORM - LEFT SIDE */}
         <div className="w-full lg:w-1/2 p-4 sm:p-8 flex flex-col">
-          {/* LOGO */}
           <div className="mb-4 flex items-center justify-start gap-2">
-            <div className='px-1 py-1 text-white bg-blue-600'>V</div>
+            <Rabbit className='size-9 text-primary'/>
             <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wider">
               Vidchat
             </span>
           </div>
-
-          {/* ERROR MESSAGE IF ANY */}
           {error && (
             <div className="alert alert-error mb-4">
               <span>{error.response.data.message}</span>
@@ -47,12 +45,11 @@ const SignUpPage = () => {
                 <div>
                   <h2 className="text-xl font-semibold">Create an Account</h2>
                   <p className="text-sm opacity-70">
-                    Join Streamify and start your language learning adventure!
+                    Join Vidchat and start your language learning adventure!
                   </p>
                 </div>
 
                 <div className="space-y-3">
-                  {/* FULLNAME */}
                   <div className="form-control w-full">
                     <label className="label">
                       <span className="label-text">Full Name</span>
@@ -66,7 +63,6 @@ const SignUpPage = () => {
                       required
                     />
                   </div>
-                  {/* EMAIL */}
                   <div className="form-control w-full">
                     <label className="label">
                       <span className="label-text">Email</span>
@@ -80,7 +76,6 @@ const SignUpPage = () => {
                       required
                     />
                   </div>
-                  {/* PASSWORD */}
                   <div className="form-control w-full">
                     <label className="label">
                       <span className="label-text">Password</span>
@@ -110,7 +105,12 @@ const SignUpPage = () => {
                   </div>
                 </div>
 
-                <button className="btn btn-primary w-full" type="submit">
+                <motion.button 
+                className="btn btn-primary w-full" 
+                type="submit"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                >
                   {isPending ? (
                     <>
                       <span className="loading loading-spinner loading-xs"></span>
@@ -119,7 +119,7 @@ const SignUpPage = () => {
                   ) : (
                     "Create Account"
                   )}
-                </button>
+                </motion.button>
 
                 <div className="text-center mt-4">
                   <p className="text-sm">
@@ -134,12 +134,17 @@ const SignUpPage = () => {
           </div>
         </div>
 
-        {/* SIGNUP FORM - RIGHT SIDE */}
+        
         <div className="hidden lg:flex w-full lg:w-1/2 bg-primary/10 items-center justify-center">
           <div className="max-w-md p-8">
-            {/* Illustration */}
             <div className="relative aspect-square max-w-sm mx-auto">
-              <img src="/i.png" alt="Language connection illustration" className="w-full h-full" />
+              <motion.img 
+              src="/i.png" 
+              alt="Language connection illustration" className="w-full h-full" 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              />
             </div>
 
             <div className="text-center space-y-3 mt-6">
